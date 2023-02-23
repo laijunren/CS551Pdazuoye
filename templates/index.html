@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Style Of Art</title>
+</head>
+<body>
+    <h1>Data investigation and analysis on the style of music artists</h1>
+    <table>
+        <tr>
+            {% for item in artist_obj %}
+            <td>{{ item.artist_id }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+</body>
+</html>
