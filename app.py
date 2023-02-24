@@ -21,12 +21,34 @@ def index():
     if artist_num[0][0]:
         return render_template("index.html",artist_num=artist_num[0][0])
     else:
-        return render_template("index.html", artist_obj=100)
+        return render_template("index.html", artist_obj=100)\
+
+@app.route('/artist_term', methods=["GET",])
+def artist_term():
+    db = create_db()
+    # Sql counts the number of term de-duplicated from the term_artist
+    cur = db.execute("select count(distinct term) from term_artist")
+    term_num = cur.fetchall()
+    # Get the duplicate term from the database
+    cur = db.execute("select distinct term from term_artist")
+    term_list = cur.fetchall()
+    # Sql counts the top 10 artist ids with the most term from the term artist and displays the number of them in the format: artist id, term num
+    cur = db.execute("select artist_id,count(term) from term_artist group by artist_id order by count(term) desc limit 10")
+    term_artist = cur.fetchall()
+    # Sql counts the top 10 terms with the highest number of occurrences of term in the term artist table. The display format is: term, number of occurrences
+    cur = db.execute("select term,count(term) from term_artist group by term order by count(term) desc limit 10")
+    term_top = cur.fetchall()
+    if term_num[0][0] and term_list and term_artist and term_top:
+        return render_template("artist_term.html", term_num=term_num[0][0], term_list=term_list, term_artist=term_artist, term_top=term_top)
+    else:
+        return render_template("artist_term.html")
+
+
 
 @app.route('/artist_mgtag', methods=["GET",])
 def artist_mgtag():
     db = create_db()
-    # Sql counts the number of mbtag de-duplicated from the mbtag artist
+    # Sql counts the number of mbtag de-duplicated from the mbtag_artist
     cur = db.execute("select count(distinct mbtag) from mbtag_artist")
     mbtag_num = cur.fetchall()
     # Get the duplicate mbtag from the database
