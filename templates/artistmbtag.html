@@ -3,9 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Style Of Art</title>
+    <style>
+         td{
+             border: 1px solid black
+         }
+    </style>
 </head>
 <body>
-    <h1></h1>
-
+    <a href="/">Back</a>
+    <h3>Here is a comparison between mgtag and artist_ The relationship between ids is counted</h3>
+    <div style="width: 100%;display: inline-flex">
+        <div style="width: 40%">
+        <p>The number of mgtags in the current database is {{ mbtag_num }}</p>
+        <ul>
+            {% for item in mbtag_list %}
+                <li>{{ item[0] }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+        <div style="width: 50%">
+            <p>Here is the ID of the top 10 artists with the most tags</p>
+            <table >
+                <tr>
+                    <td>Artist</td>
+                    <td>Tag number</td>
+                </tr>
+                {% for item in mbtag_artist %}
+                    <tr>
+                        <td>{{ item[0] }}</td>
+                        <td>{{ item[1] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <p>Here are the top 10 most frequent occurrences of mbtag tags in the database and their occurrences</p>
+            <table>
+                <tr>
+                    <td>Mbtag</td>
+                    <td>number</td>
+                </tr>
+                {% for item in mbtag_top %}
+                    <tr>
+                        <td>{{ item[0] }}</td>
+                        <td>{{ item[1] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
 </body>
 </html>
