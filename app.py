@@ -18,10 +18,17 @@ def index():
     db = create_db()
     cur = db.execute("select count(*) from artist")
     artist_num = cur.fetchall()
+    # Sql counts the number of data in the mbtag artist table
+    cur = db.execute("select count(*) from mbtag_artist")
+    mbtag_num = cur.fetchall()
+    # Sql statistics the number of data in the term artist table
+    cur = db.execute("select count(*) from term_artist")
+    term_num = cur.fetchall()
+
     if artist_num[0][0]:
-        return render_template("index.html",artist_num=artist_num[0][0])
+        return render_template("index.html",artist_num=artist_num[0][0],mbtag_num=mbtag_num[0][0],term_num=term_num[0][0])
     else:
-        return render_template("index.html", artist_obj=100)\
+        return render_template("index.html", artist_obj=None)
 
 @app.route('/artist_term', methods=["GET",])
 def artist_term():
