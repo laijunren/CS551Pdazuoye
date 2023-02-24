@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Style Of Art</title>
+    <meta charset="UTF-8">
+    <title>Style Of Art</title>
 </head>
 <body>
     <h1>Data investigation and analysis on the style of music artists</h1>
-    <table>
-        <tr>
-            {% for item in artist_obj %}
-            <td>{{ item.artist_id }}</td>
-            {% endfor %}
-        </tr>
-    </table>
+    <h3>Here we collected tags (Echo Nest and MusicBrainz) from {{ artist_num }} artists and conducted limited statistical analysis.</h3>
+    <p>You can click <a href="">here</a> to view the data relationship between artists and MBTAG.</p>
 </body>
 </html>
