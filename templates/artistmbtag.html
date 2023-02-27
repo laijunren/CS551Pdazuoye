@@ -3,51 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Style Of Art</title>
-    <style>
-         td{
-             border: 1px solid black
-         }
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <a href="/">Back</a>
-    <h3>Here is a comparison between mgtag and artist_ids The relationship between is counted</h3>
-    <div style="width: 100%;display: inline-flex">
-        <div style="width: 40%">
-        <p>The number of mgtags in the current database is {{ mbtag_num }}</p>
-        <ul>
-            {% for item in mbtag_list %}
-                <li>{{ item[0] }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-        <div style="width: 50%">
-            <p>Here is the ID of the top 10 artists with the most tags</p>
-            <table >
-                <tr>
-                    <td>Artist</td>
-                    <td>Number</td>
-                </tr>
-                {% for item in mbtag_artist %}
-                    <tr>
-                        <td>{{ item[0] }}</td>
-                        <td>{{ item[1] }}</td>
-                    </tr>
-                {% endfor %}
-            </table>
-            <p>Here are the top 10 most frequent occurrences of mbtag tags in the database and their occurrences</p>
-            <table>
-                <tr>
-                    <td>Mbtag</td>
-                    <td>number</td>
-                </tr>
-                {% for item in mbtag_top %}
-                    <tr>
-                        <td>{{ item[0] }}</td>
-                        <td>{{ item[1] }}</td>
-                    </tr>
-                {% endfor %}
-            </table>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Back</a>
+    </nav>
+    <div class="container">
+        <h3>Mbtag List</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <p>The number of mgtags in the current database is {{ mbtag_num }}</p>
+                <ul>
+                    {% for item in mbtag_list %}
+                        <li>{{ item[0] }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <p>Here is the ID of the top 10 artists with the most tags</p>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Artist</th>
+                            <th>Number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in mbtag_artist %}
+                            <tr>
+                                <td>{{ item[0] }}</td>
+                                <td>{{ item[1] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <p>Here are the top 10 most frequent occurrences of mbtag tags in the database and their occurrences</p>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Mbtag</th>
+                            <th>Number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in mbtag_top %}
+                            <tr>
+                                <td>{{ item[0] }}</td>
+                                <td>{{ item[1] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </body>
